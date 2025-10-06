@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comic World</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Comic World</h1>
+    <nav>
+      <ul>
+        <li><a href="#" data-section="home" class="active">Home</a></li>
+        <li><a href="#" data-section="comics">Comics</a></li>
+        <li><a href="#" data-section="team">Team</a></li>
+        <li><a href="#" data-section="about">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Home -->
+    <section id="home" class="content active">
+      <h2>Welcome to Comic World</h2>
+      <p>Dive into stories, heroes, and art crafted by our team.</p>
+    </section>
+
+    <!-- Comics -->
+    <section id="comics" class="content">
+      <h2>Comics Gallery</h2>
+      <div class="gallery-container">
+        <button id="prevBtn">⟨ Prev</button>
+        <div class="gallery">
+          <img id="comicImage" src="images/comic1.jpg" alt="Comic Page">
+        </div>
+        <button id="nextBtn">Next ⟩</button>
+      </div>
+    </section>
+
+    <!-- Team -->
+    <section id="team" class="content">
+      <h2>Meet the Team</h2>
+      <p>Our creators, artists, and storytellers bring comics to life.</p>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="content">
+      <h2>About the Comics</h2>
+      <p>Explore the universe of our stories, the characters, and the adventures.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Comic World</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
