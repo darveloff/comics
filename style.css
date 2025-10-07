@@ -1,81 +1,487 @@
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f8f9fa;
-  color: #333;
+*{margin:0;padding:0;box-sizing:border-box}
+
+/* here i set color variables so i can easily change theme later */
+:root{
+  /* new color palette */
+  --paper:#FFFFFA;   /* white-ish */
+  --slate:#515052;   /* grey */
+  --coal:#000103;    /* almost black */
+  --graphite:#333138;/* dark grey */
+  --accent:#FF312E;  /* red color */
+
+  /* connect old color names with new ones so old code still works */
+  --ink: var(--graphite);
+  --brown: var(--graphite);
+  --gold: var(--accent);
+
+  /* header height variable */
+  --header-h: 120px;
 }
 
-header {
-  background: #222;
-  color: white;
-  padding: 1em;
-  text-align: center;
+/* smooth scroll effect when clicking menu links */
+html{scroll-behavior:smooth}
+
+/* main body setup */
+body{
+  font-family:'Courier New', Courier, monospace;
+  background:var(--coal);
+  color:var(--paper);
+  padding-top: var(--header-h); /* so content doesn’t hide behind header */
 }
 
-nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  gap: 1.5em;
+/* header styles (menu bar on top) */
+header{
+  background:var(--ink);
+  padding:1.5em 3em;
+  justify-content:space-between;
+  align-items:center;
+  position:fixed;
+  inset:0 0 auto 0;
+  z-index:1000;
+  min-height: var(--header-h);
+  padding-block: 1.25rem;
+  display:flex;
+  align-items:center;
+  border-bottom: 3px solid var(--gold); /* thin border under header */
 }
 
-nav a {
-  text-decoration: none;
-  color: #ddd;
-  font-weight: bold;
+/* website logo */
+.logo{
+  font-size:1.6em;
+  font-weight:bold;
+  color:var(--accent); /* red text */
+  letter-spacing:2px;
+  font-family:'Bangers',cursive;
 }
 
-nav a.active, nav a:hover {
-  color: #ff9800;
+/* menu list */
+nav ul{
+  list-style:none;
+  display:flex;
+  gap:2em;
 }
 
-main {
-  padding: 2em;
-  text-align: center;
+/* menu links */
+nav a{
+  text-decoration:none;
+  color: var(--paper);
+  font-weight:bold;
+  font-size:1.05em;
+  padding:.5em 1.2em;
+  border-radius:.25rem;
+  transition:.25s;
+  text-transform:uppercase;
+  letter-spacing:1px;
 }
 
-.content {
-  display: none;
+/* active menu link */
+nav a.active{
+  background: var(--paper); /* white */
+  color: var(--accent);     /* red text */
 }
 
-.content.active {
-  display: block;
+/* when mouse hover over menu links */
+nav a:hover{
+  background: rgba(255,255,255,.15);
+  color: var(--paper);
 }
 
-.gallery-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1em;
-  margin-top: 1.5em;
+/* main body container */
+main{min-height:calc(100vh - 200px)}
+
+/* make sure sections scroll nicely below header */
+.content{scroll-margin-top: calc(var(--header-h) + 10px);}
+
+/* home page section */
+#home{
+  background:var(--coal);
+  min-height:70vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding:3em;
+  gap:2em;
 }
 
-.gallery img {
-  max-width: 600px;
-  max-height: 80vh;
-  border: 3px solid #444;
-  border-radius: 10px;
+/* layout for text + image */
+.hero-content{
+  display:grid;
+  grid-template-columns:1fr 1.2fr;
+  gap:3em;
+  max-width:1400px;
+  width:100%;
+  align-items:start;
+  font-size: 1.5em;
 }
 
-button {
-  padding: 0.5em 1em;
-  background: #222;
-  color: white;
+.hero-left{
+  display:flex;
+  flex-direction:column;
+  gap:1.25em;
+}
+
+/* title text (campus rush) */
+.hero-title{
+  font-family: 'Bangers',cursive;
+  font-size:3em;
+  font-weight:bold;
+  color:var(--accent);
+  padding:.25em 0;
+  border:none; /* no box */
+}
+
+/* small description under title */
+.hero-description{
+  background: transparent;
   border: none;
-  cursor: pointer;
-  border-radius: 5px;
+  box-shadow: none;
 }
 
-button:hover {
-  background: #ff9800;
+/* image box on right side */
+.hero-right{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:1.25em;
 }
 
-footer {
-  margin-top: 2em;
-  padding: 1em;
-  background: #222;
-  color: #ddd;
-  text-align: center;
+/* make image always same shape */
+.hero-image-placeholder{
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #1f1f22;
+  border: 3px solid var(--slate);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* crop image nicely + focus on top */
+.hero-image-placeholder img{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  object-position: 50% 10%; /* show top part more */
+}
+
+/* read comic button */
+.cta-button{
+  font-family: 'Courier New', Courier, monospace;
+  padding:.9em 2.4em;
+  background:transparent;
+  color:var(--paper);
+  border:3px solid var(--accent);
+  font-size:1.05em;
+  cursor:pointer;
+  transition:.25s;
+  border-radius:50px;
+}
+
+/* button hover turns red */
+.cta-button:hover{
+  background:var(--accent);
+  color:var(--coal);
+}
+
+/* comic page section */
+#comics{
+  background:var(--graphite);
+  min-height:calc(100vh - 100px);
+  padding:2em;
+  display:flex;
+  flex-direction:column;
+  gap:0;
+}
+
+.comic-header{display:none}
+
+/* main comic frame */
+.comic-main{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:1.25em;
+  background:var(--ink);
+  border:5px solid var(--paper);
+  padding:1em;
+  max-width:1200px;
+  width:100%;
+  margin:0 auto;
+}
+
+/* comic image holder */
+.comic-display{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:38vh;
+}
+
+/* comic image itself */
+.comic-display img{
+  width:100%;
+  height:auto;
+  max-height:58svh;
+  object-fit:contain;
+  border:3px solid var(--slate);
+  background:#000;
+}
+
+/* caption text under image */
+.scene-caption{
+  width:100%;
+  border-top:3px solid var(--slate);
+  padding:1rem 1.25rem;
+  color:#e8e8e8;
+  line-height:1.5;
+  text-align:center;
+  background:#1c1b1f;
+}
+
+/* choice buttons (for story options) */
+.choice-block{
+  width:100%;
+  padding:1.25rem 1rem;
+  border-top:3px solid var(--slate);
+  background:#16161a;
+  display:none;
+}
+.choice-block.active{display:block}
+
+/* choice title small text */
+.choice-eyebrow{
+  text-align:center;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:#d0d0d0;
+  font-weight:800;
+  margin-bottom:.5rem;
+}
+
+/* question text */
+.choice-question{
+  text-align:center;
+  color:var(--accent);
+  font-weight:900;
+  font-size:1.25rem;
+  margin-bottom:1rem;
+}
+
+/* layout for the choice cards */
+.choice-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:1.25rem;
+  max-width:860px;
+  margin:0 auto;
+}
+
+/* each choice button style */
+.choice-card{
+  background:#222227;
+  border:2px solid var(--slate);
+  padding:1rem 1rem;
+  text-align:center;
+  cursor:pointer;
+  transition:.2s;
+  border-radius:.25rem;
+}
+.choice-card:hover{transform:translateY(-2px)}
+
+/* text inside choice cards */
+.choice-title{
+  font-weight:900;
+  letter-spacing:.12em;
+  margin-bottom:.5rem;
+  color:var(--paper);
+}
+.choice-desc{
+  opacity:.85;
+  font-size:.9rem;
+  line-height:1.25;
+  color:#ddd;
+}
+
+/* footer with next/prev buttons */
+.comic-footer{
+  background:var(--graphite);
+  padding:1.25em;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:1em;
+  border-top:3px solid var(--slate);
+  flex-wrap:wrap;
+  max-width:1200px;
+  width:100%;
+  margin:0 auto;
+}
+
+/* prev/next buttons */
+.comic-nav-btn{
+  padding:.85em 1.4em;
+  background:var(--accent);
+  color:var(--coal);
+  border:3px solid var(--ink);
+  cursor:pointer;
+  font-size:1em;
+  font-weight:bold;
+  transition:.2s;
+  text-transform:uppercase;
+  flex:1 1 140px;
+  max-width:240px;
+}
+.comic-nav-btn:hover{
+  transform:scale(1.03);
+  filter:brightness(1.05);
+}
+.comic-nav-btn:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+  transform:none;
+}
+
+/* small page indicator with dots */
+.page-indicator{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:.6em;
+  flex:2 1 220px;
+}
+.page-counter{
+  font-size:1.3em;
+  color:var(--accent);
+  font-weight:bold;
+}
+.page-dots{
+  display:flex;
+  gap:.5em;
+  overflow-x:auto;
+  padding:.25em;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;
+  max-width:100%;
+}
+.dot{
+  width:15px;
+  height:15px;
+  border:2px solid var(--slate);
+  background:transparent;
+  cursor:pointer;
+  transition:.2s;
+  flex:0 0 auto;
+}
+.dot.active{background:var(--accent)}
+.dot:hover{transform:scale(1.15)}
+.page-dots.disabled{pointer-events:none;opacity:.6}
+
+/* team section always visible */
+#team{
+  display:block;
+  padding:3em;
+  scroll-margin-top: calc(var(--header-h) + 10px);
+}
+#team h2{
+  font-size:2.5em;
+  text-align:center;
+  margin-bottom:2em;
+  color:var(--accent);
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-family:'Bangers',cursive;
+}
+
+/* team cards layout */
+.team-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:3em;
+  max-width:1200px;
+  margin:0 auto;
+  padding:2em;
+}
+.team-member{text-align:center}
+
+/* team images */
+.team-image-placeholder{
+  width:100%;
+  height:250px;
+  background:#1f1f22;
+  border:2px solid var(--slate);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#888;
+  margin-bottom:1em;
+}
+
+/* team name */
+.team-name{
+  font-size:1.5em;
+  font-weight:bold;
+  color:var(--accent);
+  margin-bottom:.5em;
+  padding:.5em;
+  border:2px solid var(--slate);
+  display:inline-block;
+}
+
+/* team description text */
+.team-description{
+  background:var(--ink);
+  padding:1.25em;
+  border:2px solid var(--slate);
+  color:#ddd;
+  min-height:100px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* make sure team images fill the box */
+.team-image-placeholder img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* footer at very bottom */
+footer{
+  margin-top:3em;
+  padding:1.5em;
+  background:var(--ink);
+  color:var(--paper);
+  text-align:center;
+  border-top:3px solid var(--slate);
+}
+
+/* responsive styles for tablets */
+@media (max-width: 968px){
+  .team-grid{grid-template-columns:repeat(2,1fr)}
+  .hero-content{grid-template-columns:1fr;gap:2em}
+  .hero-left{text-align:center}
+  .hero-title{font-size:3em}
+  header{padding:1em 2em}
+}
+
+/* responsive styles for phones */
+@media (max-width: 640px){
+  :root{ --header-h: 140px; } /* make header a bit taller */
+  .team-grid{grid-template-columns:1fr}
+  header{flex-direction:column;gap:1em;padding:1em}
+  .hero-title{font-size:2em}
+  .hero-image-placeholder{height:300px}
+
+  #comics{padding:1em}
+  .comic-main{padding:.75em}
+  .comic-footer{flex-direction:column;align-items:stretch}
+  .page-counter{font-size:1.15em}
+  .comic-display img{max-height:55svh}
+  .choice-grid{grid-template-columns:1fr}
 }

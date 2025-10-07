@@ -1,60 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Comic World</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Campus Rush</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <h1>Comic World</h1>
+    <div class="logo">ACADEMIC ADVENTURES</div>
     <nav>
       <ul>
-        <li><a href="#" data-section="home" class="active">Home</a></li>
-        <li><a href="#" data-section="comics">Comics</a></li>
-        <li><a href="#" data-section="team">Team</a></li>
-        <li><a href="#" data-section="about">About</a></li>
+        <li><a href="#home" data-section="home" class="active">Home</a></li>
+        <li><a href="#comics" data-section="comics">Comic</a></li>
+        <li><a href="#team" data-section="team">Team</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
     <!-- Home -->
-    <section id="home" class="content active">
-      <h2>Welcome to Comic World</h2>
-      <p>Dive into stories, heroes, and art crafted by our team.</p>
+    <section id="home" class="content">
+      <div class="hero-content">
+        <div class="hero-left">
+          <div class="hero-title">Campus Rush</div>
+          <div class="hero-description">
+            Campus Rush is a chaotic, funny, and totally relatable college comic - late classes, caffeine drama, and unbothered professors included. Because sometimes, surviving campus feels like a full-time sport.
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="hero-image-placeholder">
+            <img id="coverpage" src="images/campus_rush.jpeg" alt="comiccover" />
+          </div>
+        </div>
+      </div>
+      <button class="cta-button" data-section="comics">Read Comic</button>
     </section>
 
     <!-- Comics -->
     <section id="comics" class="content">
-      <h2>Comics Gallery</h2>
-      <div class="gallery-container">
-        <button id="prevBtn">⟨ Prev</button>
-        <div class="gallery">
-          <img id="comicImage" src="images/comic1.jpg" alt="Comic Page">
+      <div class="comic-main">
+        <div class="comic-display">
+          <img id="comicImage" src="images/1.jpeg" alt="Comic Page" />
         </div>
-        <button id="nextBtn">Next ⟩</button>
+        <div class="scene-caption" id="sceneCaption">
+          Madina is a college student. She rushes out of the building after realizing she's late for class.
+        </div>
+
+        <!-- Choices -->
+        <div class="choice-block" id="choiceBlock">
+          <div class="choice-eyebrow" id="choiceEyebrow">Madina faces a choice</div>
+          <div class="choice-question" id="choiceQuestion">What should Madina do? Choose her path...</div>
+          <div class="choice-grid" id="choiceGrid"></div>
+        </div>
+      </div>
+
+      <div class="comic-footer">
+        <button class="comic-nav-btn" id="prevBtn">← PREV</button>
+        <div class="page-indicator">
+          <div class="page-counter"><span id="currentPage">01</span> / <span id="totalPages">20</span></div>
+          <div class="page-dots" id="pageDots"></div>
+        </div>
+        <button class="comic-nav-btn" id="nextBtn">NEXT →</button>
       </div>
     </section>
 
-    <!-- Team -->
-    <section id="team" class="content">
-      <h2>Meet the Team</h2>
-      <p>Our creators, artists, and storytellers bring comics to life.</p>
-    </section>
+    <!-- Team (always visible) -->
+    <section id="team">
+      <h2>Team</h2>
+      <div class="team-grid">
+        <div class="team-member">
+          <div class="team-image-placeholder">
+            <img src="images/cat1.jpeg" alt="Shota">
+          </div>
+          <div class="team-name">Shota</div>
+          <div class="team-description">Hey, I'm Shota. I'm a Computer Science major at NYUAD, and I'm in my third year</div>
+        </div>
 
-    <!-- About -->
-    <section id="about" class="content">
-      <h2>About the Comics</h2>
-      <p>Explore the universe of our stories, the characters, and the adventures.</p>
+        <div class="team-member">
+          <div class="team-image-placeholder">
+            <img src="images/cat2.jpg" alt="Darmen">
+          </div>
+          <div class="team-name">Darmen</div>
+          <div class="team-description">Hey, I'm Darmen. I'm an Interactive Media major at NYUAD, and I'm in my second year</div>
+        </div>
+
+        <div class="team-member">
+          <div class="team-image-placeholder">
+            <img src="images/cat3.jpg" alt="Madina">
+          </div>
+          <div class="team-name">Madina</div>
+          <div class="team-description">Hey, I'm Madina. I'm a study away student from NYUSH, and I'm in my third year</div>
+        </div>
+      </div>
     </section>
+  <!-- little audio -->
+  <audio id="bgm" src="audio/music.mp3" preload="auto" loop></audio>
   </main>
 
-  <footer>
-    <p>© 2025 Comic World</p>
-  </footer>
-
+  <footer><p>© 2025 Campus Rush</p></footer>
   <script src="script.js"></script>
 </body>
 </html>
